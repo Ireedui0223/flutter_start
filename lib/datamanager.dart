@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
+
 import 'datamodel.dart';
 import 'package:http/http.dart' as http;
 
@@ -34,9 +36,9 @@ class DataManager {
         item.quantity++;
         found = true;
       }
-      if (!found) {
-        card.add(ItemInCart(product: p, quantity: 1));
-      }
+    }
+    if (!found) {
+      card.add(ItemInCart(product: p, quantity: 1));
     }
   }
 

@@ -17,9 +17,26 @@ class MenuPage extends StatelessWidget {
             return ListView.builder(
                 itemCount: categories.length,
                 itemBuilder: ((context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(categories[index].name),
+                  return Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Text(categories[index].name),
+                      ),
+                      ListView.builder(
+                          shrinkWrap: true,
+                          physics: const ClampingScrollPhysics(),
+                          itemCount: categories[index].product.length,
+                          itemBuilder: (context, prodIndex) {
+                            var product = categories[index].product[prodIndex];
+                            return ProductItem(
+                              product: product,
+                              onAdd: (addedProduct) {
+                                dataManager.cartAdd(addedProduct);
+                              },
+                            );
+                          })
+                    ],
                   );
                 }));
           } else {
@@ -42,13 +59,13 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(6),
       child: Card(
         elevation: 4,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset("images/profile.png"),
+            Image.network(product.imageUrl),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
