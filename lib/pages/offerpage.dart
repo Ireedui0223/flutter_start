@@ -7,13 +7,17 @@ class OffersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: const [
-        Offer(title: "title", descripion: "descripion"),
-        Offer(title: "title", descripion: "descripion"),
-        Offer(title: "title", descripion: "descripion"),
-        Offer(title: "title", descripion: "descripion"),
-        Offer(title: "title", descripion: "descripion"),
-        Offer(title: "title", descripion: "descripion"),
-        Offer(title: "title", descripion: "descripion")
+        Wrap(
+          children: [
+            Offer(title: "title", descripion: "descripion"),
+            Offer(title: "title", descripion: "descripion"),
+            Offer(title: "title", descripion: "descripion"),
+            Offer(title: "title", descripion: "descripion"),
+            Offer(title: "title", descripion: "descripion"),
+            Offer(title: "title", descripion: "descripion"),
+            Offer(title: "title", descripion: "descripion")
+          ],
+        )
       ],
     );
   }
@@ -33,6 +37,7 @@ class Offer extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 200,
+      width: 300,
       child: Card(
         elevation: 7,
         child: Container(
