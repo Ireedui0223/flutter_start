@@ -1,7 +1,10 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_start/datamanager.dart';
+import 'package:flutter_start/pages/menupage.dart';
 import 'package:flutter_start/pages/offerpage.dart';
+import 'package:flutter_start/pages/orderpage.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -22,6 +25,7 @@ class MyApp extends StatefulWidget {
 class MainApp extends State<MyApp> {
   String value = "hello world";
   int selectedIndex = 0;
+  var dataManager = DataManager();
 
   void onClickBtn(String inputValue) {
     setState(() {
@@ -35,13 +39,15 @@ class MainApp extends State<MyApp> {
 
     switch (selectedIndex) {
       case 0:
-        currentWidgetPage = const OffersPage();
+        currentWidgetPage = MenuPage(
+          dataManager: dataManager,
+        );
         break;
       case 1:
-        currentWidgetPage = const Text("Shop");
+        currentWidgetPage = OrderPage(dataManager: dataManager);
         break;
       case 2:
-        currentWidgetPage = const Text("order");
+        currentWidgetPage = const OffersPage();
         break;
     }
 
@@ -68,7 +74,13 @@ class MainApp extends State<MyApp> {
             )
           ]),
       body: currentWidgetPage,
+      // body: [
+      //   const MenuPage(),
+      //   const Text('sdfs'),
+      //   const OffersPage(),
+      // ][selectedIndex],
     );
+    //
   }
 }
 
